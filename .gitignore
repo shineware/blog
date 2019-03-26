@@ -1,0 +1,6 @@
+.jekyll-metadata
+.sass-cache
+Gemfile.lock
+_site
+url_mapping.csv
+cmd.txt
