@@ -1,19 +1,18 @@
-name: Michael Lanyon's Blog
-url: 'https://blog.lanyonm.org'
-description: 'Notes and thoughts from LanyonM'
-
-exclude: [Gemfile, Gemfile.lock, README.md]
+name: SHINEWARE
+url: https://blog.shineware.co.kr
+description: 'SHINEWARE는 NLP 연구 동호회로, 자연어 처리와 관련된 다양한 연구들을 진행하고 있습니다.'
+exclude: [Gemfile, Gemfile.lock, README.md, docs, vendor]
 markdown: kramdown
 
-author: 'Michael Lanyon'
-disqus_shortname: lanyonm
-google_analytics: UA-42209870-1
+author: 'Junghwan Park'
+disqus_shortname: shineware
+google_analytics: UA-99586710-3
 
-gems:
+plugins:
   # https://help.github.com/articles/atom-rss-feeds-for-github-pages/
   - jekyll-gist
   - jekyll-sitemap
 
 sass:
-    sass_dir: _sass
-    style: :compressed
+  sass_dir: _sass
+  style: :compressed
