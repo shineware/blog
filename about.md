@@ -3,31 +3,22 @@ layout: page
 title: About
 ---
 
-Hi. I'm Mike.
+SHINEWARE 블로그에 방문하신 것을 환영합니다.
 
-I'm a nerd at heart - a trained computer engineer turned to the software side long ago by the lure of faster feedback. I quickly discovered that I am passionate about building great teams and systems, and I work every day to make the lives of my teammates better and to attain a more holistic understanding of the world around me. As a leader I do my best to inspire my teams and foster a learning culture, with the ultimate goal of delivering high quality products and retaining happy engineers.
+SHINEWARE는 NLP 연구 동호회로, 자연어 처리와 관련된 다양한 연구들을 진행하고 있습니다.
 
-The passion to continuously improve guides me in my role as VP of Engineering at [Critical Mass](http://www.criticalmass.com/). We are a creative company, but software is the delivery mechanism for customer experience and thus Engineering strives for a blend of innovation, scalability, reproducibility, and practicality. My teams architect and implement the systems behind the customer experiences that Critical Mass delivers.
+현재까지 다음의 결과물들을 공개하였습니다.
 
-I am active in the DevOps community and am one of the organizers of DevOpsDays Chicago. It has been an incredibly supportive and fulfilling experience to be part the movement as it's gained momentum and popularity. If you were wondering, I believe firmly that culture &gt; tools. Having said that, writing code is a guilty pleasure - specifically the types of things that would be most readily identified as DevOps tools. I have a particularly soft spot for monitoring and infrastructure automation.
+- 한국어 형태소 분석기, [KOMORAN](https://github.com/shin285/KOMORAN)
+- KOMORAN의 Python Wrapper, [PyKOMORAN](https://github.com/shineware/PyKOMORAN)
+- KOMROAN의 R Wrapper, [RKOMORAN](https://github.com/shineware/RKOMORAN) (개발 중)
+- 형태소 분석기 사전 관리 도구, [KOMORANAdmin](https://github.com/shineware/KOMORANAdmin)
 
-On my way to a career, I took an adventurous detour into ProAm bike racing. It was tons of fun and taught me a lot about what it feels like to pour all your energy into the pursuit of a goal. A few searches will turn up more than I'm willing to divulge here about my cycling days. I've caught the racing bug once again and have joined [Burnham Racing](http://burnhamracing.org/) for the 2017 season.
+SHINEWARE에 대해서 더 궁금하시다면 [홈페이지](https://www.shineware.co.kr) 또는 [GitHub 저장소](https://github.com/shineware)를 방문해주세요.
 
-The internet has accumulated plenty of my fingerprints, some of which you can find in these places:
+또한 [Slack](https://komoran.slack.com)에서 자연어 처리와 관련한 얘기도 함께 나누실 수 있습니다.
+(처음 방문 시에는 [가입](http://goo.gl/T1d3Ia)이 필요합니다.)
 
-<p class="social-icons">
-  <a href="https://twitter.com/lanyonm"><i class="fab fa-twitter fa-2x"></i></a>
-  <a href="https://github.com/lanyonm"><i class="fab fa-github fa-2x"></i></a>
-  <a href="https://bitbucket.org/lanyonm"><i class="fab fa-bitbucket fa-2x"></i></a>
-  <a href="https://www.linkedin.com/in/lanyonm"><i class="fab fa-linkedin-in fa-2x"></i></a>
-  <a href="http://stackoverflow.com/users/757893/lanyonm"><i class="fab fa-stack-overflow fa-2x"></i></a>
-  <!-- <a href="http://www.slideshare.net/MichaelLanyon"><i class="fa fa-slideshare fa-2x"></i></a> -->
-  <a href="https://speakerdeck.com/lanyonm"><i class="fab fa-slideshare fa-2x"></i></a>
-  <a href="https://medium.com/@lanyonm"><i class="fab fa-medium fa-2x"></i></a>
-  <a href="https://www.flickr.com/photos/lanyonm"><i class="fab fa-flickr fa-2x"></i></a>
-  <a href="https://instagram.com/lanyonm/"><i class="fab fa-instagram fa-2x"></i></a>
-  <a href="http://www.strava.com/athletes/lanyonm"><i class="fab fa-strava fa-2x"></i></a>
-  <!-- <a href="https://www.youtube.com/user/lanyonm"><i class="fa fa-youtube fa-2x"></i></a> -->
-</p>
+감사합니다.
 
-Thanks for reading!
+-- SHINEWARE TEAM
