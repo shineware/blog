@@ -1,11 +1,21 @@
-# Jekyll source for blog.lanyonm.org
-Read more here: [GitHub User Pages](https://help.github.com/articles/user-organization-and-project-pages).
+# BLOG
 
-# License
-The following directories and their contents are Copyright Michael Lanyon.  You may not reuse anything therein without my permission:
+## Introduction
 
-*   _posts/
-*   _drafts/
-*   images/ (unless otherwise noted in a watermark)
+This is a repository for SHINEWARE's blog.
 
-All other directories and files are MIT Licensed.
+Forked from [lanyonm/lanyonm.github.io](https://github.com/lanyonm/lanyonm.github.io), and we respect the original license.
+(Did not copy any directories those are not under MIT license)
+
+If you want to post an article, please leave us an issue.
+
+## LICENSE
+
+The following directories and their contents are copyrighted SHINEWARE and the authors. You may not reuse anything therein without our permission:
+
+* `_posts/` and posts under `_site/` or `docs/`
+* `_drafts/` and drafts under `_site/` or `docs/`
+* `images/`
+* `index.html` and other content
+
+All other directories and files are MIT licensed.
