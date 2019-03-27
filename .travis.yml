@@ -1,0 +1,13 @@
+language: ruby
+rvm:
+- 2.5.0
+before_script:
+- chmod +x ./push.sh
+- gem install bundler
+- bundle install
+script: bundle exec jekyll build
+after_success:
+- "./push.sh"
+env:
+  global:
+  - secure: YbACFurpqrwjSN0lFE8t8WvkLSTVV15BXttada1rZqZD4xyhOErE4guCXOnmcLIaoKyvpF4QVN9h15Y10vXXUpOrr8eErbJ59IPgBAoKfWYaerHizZnbphV4NCMl5ib9E7x96i9PL5kWStmk2wcQ0mSiTzXVZkLV538T2w4qlHUR3zk//5GTpmCy+hUzeuWjmuuL2g9w74dzZT2wXv4x7x2lURi3+nan3n2Xgo00wac2sqmmxnD9hKc59bEXXCSRpxUTSVtmxChJho2p0bfA67PnGAUzVjTiFPooN9ZZhBPEjC1DJbFplyxCKwhxAloAkkG0F9nLZyIl2MCkbi1yoZKtyEyy8KRzGjT7/ywRhUy8tAIiltHkXyo6PSHc9jKNAJ3kbttSOtf/fwLnn2dBDUQKUaewBjNW05BY7w8Ki/4+nMMdZUsTiq7xga5HYyH6HMZDedjjJ33w9ZBnOSQXmuQCWBFKQPnMj433JCwB/4GS7KtfZHc4jngJCkWyqNp87dMoUSZK3WA+tQjKYEj/yjQl4qpJwPmwOZ2fZRCT7SEoOVBH45tUVIi8wqn8vmZ1fESy3sezFaeX+EOKVuLXm073NiAaE/SJcCbX3qDkoolw9gEOP/K+Z4DpyGoMVSu7k7cQKrfEkkKDNeuAwQQaFeMh+mwmSmuuOhAits7uPMg=
