@@ -1,6 +1,10 @@
 .jekyll-metadata
 .sass-cache
+.bundle/
+vendor/
 Gemfile.lock
-_site
+_site/
 url_mapping.csv
 cmd.txt
+.vscode
+.DS_Store
