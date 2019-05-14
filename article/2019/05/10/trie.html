@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>TRIE (트라이) 자료구조 &#8211; SHINEWARE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <meta name="author" content="Junghwan Park">
+  <meta name="description" content="">
+  <meta name="keywords" content="shineware, trie, nlp, data structure, tree, ir">
+  <meta name="viewport" content="width=device-width">
+  <link rel="canonical" href="https://blog.shineware.co.kr/article/2019/05/10/trie.html" />
+  <link rel="shortcut icon" href="favicon.ico" />
+
+  <meta property="og:title" content="TRIE (트라이) 자료구조 &#8211; SHINEWARE">
+  <meta property="og:type" content="article">
+  <meta property="og:description" content="">
+  <meta property="og:url" content="https://blog.shineware.co.kr/article/2019/05/10/trie.html">
+  <meta property="og:site_name" content="SHINEWARE">
+  
+
+  <link href="https://blog.shineware.co.kr/feed.xml" type="application/atom+xml" rel="alternate" title="SHINEWARE">
+
+  <link rel="stylesheet" href="/css/main.min.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <link rel="shortcut icon" href="/images/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/images/favicon/site.webmanifest">
+  <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#e50000">
+  <meta name="msapplication-TileColor" content="#ff0000">
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+  <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about.html">About</a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/tags.html">Tags</a>
+        
+      
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>SHINEWARE는 NLP 연구 동호회로, 자연어 처리와 관련된 다양한 연구들을 진행하고 있습니다.</p>
+    <p class="social-icons">
+      <a href="https://www.shineware.co.kr"><i class="fas fa-home fa-2x"></i></a>
+      <a href="https://github.com/shineware"><i class="fab fa-github fa-2x"></i></a>
+      <a href="https://komoran.slack.com"><i class="fab fa-slack fa-2x"></i></a>
+      <a href="/feed.xml"><i class="fa fa-rss fa-2x"></i></a>
+    </p>
+    <p>
+      &copy; 2019. All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+  <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+       content to avoid any CSS collisions with our real content. -->
+  <div class="wrap">
+    <div class="masthead">
+      <div class="container">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">SHINEWARE</a>
+          <small>SHINEWARE는 NLP 연구 동호회로, 자연어 처리와 관련된 다양한 연구들을 진행하고 있습니다.</small>
+        </h3>
+      </div>
+    </div>
+
+    <div class="container content">
+      <article itemscope itemtype="http://schema.org/Article">
+  <div class="post">
+    <h1 itemprop="name" class="post-title">TRIE (트라이) 자료구조</h1>
+    <p class="entry-tags"><a href="https://blog.shineware.co.kr/tags.html#shineware" title="Pages tagged shineware" rel="tag">shineware</a> &bull; <a href="https://blog.shineware.co.kr/tags.html#trie" title="Pages tagged trie" rel="tag">trie</a> &bull; <a href="https://blog.shineware.co.kr/tags.html#nlp" title="Pages tagged nlp" rel="tag">nlp</a> &bull; <a href="https://blog.shineware.co.kr/tags.html#data+structure" title="Pages tagged data structure" rel="tag">data structure</a> &bull; <a href="https://blog.shineware.co.kr/tags.html#tree" title="Pages tagged tree" rel="tag">tree</a> &bull; <a href="https://blog.shineware.co.kr/tags.html#ir" title="Pages tagged ir" rel="tag">ir</a></p>
+    <p class="post-date" itemprop="datePublished" content="2019-05-10">10 May 2019</p>
+    <p><a href="https://blog.shineware.co.kr/article/2019/05/10/trie.html#disqus_thread">Comments</a></p>
+    <p>이번 포스팅에서는 자연어처리에서 자주 사용되는 자료구조 중 하나인 trie에 대해서 알아보겠습니다.</p>
+
+<p>##TRIE(트라이)란?
+TRIE는 문자열을 효율적으로 검색하기 위해 고안된 자료구조입니다.<br />
+TRIE는 검색(reTRIEve)이라는 단어에서 유래되었으며 유래에서 알 수 있듯이 검색엔진 또는 자연어처리 등과 같이 문자열을 빠르게 탐색해야 하는 분야에서 다양하게 사용되고 있습니다.</p>
+
+<p>##TRIE 자료구조
+TRIE는 트리 기반의 자료구조로써 저장할 단어를 각각의 문자로 쪼개어 아래 그림과 같이 트리를 구성하게 됩니다.<br />
+이 때 단어의 마지막 문자에는 단어의 끝을 나타내는 표시를 해줍니다.<br />
+아래 TRIE는 <code class="highlighter-rouge">apple</code>, <code class="highlighter-rouge">app</code>, <code class="highlighter-rouge">api</code>, <code class="highlighter-rouge">apex</code>, <code class="highlighter-rouge">ice</code>, <code class="highlighter-rouge">ic</code>, <code class="highlighter-rouge">bee</code>, <code class="highlighter-rouge">bird</code>, <code class="highlighter-rouge">plea</code>의 단어로 구성된 TRIE 입니다.</p>
+
+<p><img src="../images/trie-picture-1.jpg?raw=true" alt="Alt text" /></p>
+
+<p>##TRIE 검색
+문장 <code class="highlighter-rouge">appleapi</code>에 포함된 모든 단어를 찾는 문제로 가정해보겠습니다.  <br />
+이 때 답은 <code class="highlighter-rouge">apple</code>, <code class="highlighter-rouge">app</code>, <code class="highlighter-rouge">api</code>, <code class="highlighter-rouge">plea</code> 입니다.<br />
+먼저 <code class="highlighter-rouge">appleapi</code>에서 첫번째 문자인 <code class="highlighter-rouge">a</code>를 <code class="highlighter-rouge">root</code>의 자식 노드들에서 검색합니다.</p>
+
+<p><img src="../images/trie-picture-2.jpg?raw=true" alt="Alt text" /></p>
+
+<p>위와 같이 검색이 되고, 다시 검색된 노드의 자식 노드들 중에서 다음 문자인 <code class="highlighter-rouge">p</code>를 검색합니다.</p>
+
+<p><img src="../images/trie-picture-3.jpg?raw=true" alt="Alt text" /></p>
+
+<p>이런식으로 주어진 문장을 끝까지 검색하면 아래 그림과 같이 <code class="highlighter-rouge">apple</code>, <code class="highlighter-rouge">app</code>이 검색됩니다.</p>
+
+<p><img src="../images/trie-picture-4.jpg?raw=true" alt="Alt text" /></p>
+
+<p>주어진 문장 <code class="highlighter-rouge">appleapi</code>에서 첫번째 문자인 <code class="highlighter-rouge">a</code>에 대한 탐색은 마쳤습니다.<br />
+이어서 다음 문자인 <code class="highlighter-rouge">p</code>를 다시 root의 자식 노드들에서 검색합니다.</p>
+
+<p><img src="../images/trie-picture-5.jpg?raw=true" alt="Alt text" /></p>
+
+<p>검색된 노드의 자식 노드들 중에서 다음 문자인 <code class="highlighter-rouge">p</code>를 검색해봅니다.<br />
+이 때 자식 노드들 중에서 <code class="highlighter-rouge">p</code>가 없기 때문에 입력된 문장의 두번째 문자 <code class="highlighter-rouge">p</code>에 대한 탐색은 종료됩니다.</p>
+
+<p>다음으로 세번재 문자인 <code class="highlighter-rouge">p</code>에 대해서 검색을 합니다.<br />
+위와 같은 방법으로 검색을 하게되면 아래 그림과 같이 <code class="highlighter-rouge">plea</code>가 검색됩니다.</p>
+
+<p><img src="../images/trie-picture-6.jpg?raw=true" alt="Alt text" /></p>
+
+<p>네번째 문자 <code class="highlighter-rouge">l</code>과 다섯번째 문자 <code class="highlighter-rouge">e</code>는 root의 자식 노드에 없기 때문에 바로 종료됩니다.</p>
+
+<p>여섯번째 문자인 <code class="highlighter-rouge">a</code>에 대해서 다시 검색을 하게 되면 아래 그림과 같이 <code class="highlighter-rouge">api</code>가 검색됩니다.</p>
+
+<p><img src="../images/trie-picture-7.jpg?raw=true" alt="Alt text" /></p>
+
+<p>남은 문자인 <code class="highlighter-rouge">p</code>, <code class="highlighter-rouge">i</code>에 대해서는 검색되는 단어가 없습니다.</p>
+
+<p>최종적으로 <code class="highlighter-rouge">appleapi</code>에서 검색된 문자는 <code class="highlighter-rouge">apple</code>, <code class="highlighter-rouge">app</code>, <code class="highlighter-rouge">plea</code>, <code class="highlighter-rouge">api</code>가 됩니다.</p>
+
+<p>##TRIE를 왜 쓰나요?
+ 가장 빠른 알고리즘은 hash를 이용한 방법일 겁니다.<br />
+ 주어진 문장을 잘게 쪼갠 후 hash 값을 통해서 사전에 포함된 단어를 찾아야 합니다.<br />
+ 그러나 이 때 <code class="highlighter-rouge">주어진 문장을 잘게 쪼갠 후</code>의 과정이 있기 때문에 빠르게 단어를 찾을 수 없습니다.<br />
+ 또한 위 예제의 경우에는 사전에 포함된 단어의 개수가 얼마되지 않기 때문에 다른 알고리즘을 통해서 더 빠르게 포함된 단어를 찾을 수도 있습니다.<br />
+ 그러나 사전의 사이즈가 매우 커지면 빠르게 단어를 찾을 수 없습니다.<br />
+ 그렇기 때문에 TRIE를 통해서 이러한 문제를 해소할 수 있습니다.</p>
+
+<p>##TRIE는 어디에 쓰이나요?
+가장 대표적으로 shineware에서 오픈소스로 공개한 KOMORAN에도 TRIE 기반의 자료구조가 사용되고 있습니다.<br />
+영어는 띄어쓰기 단위로 단어를 인지할 수 있지만 한국어의 경우에는 하나의 어절에 여러 형태소가 포함될 수 있습니다.<br />
+이러한 여러 형태소를 찾아야하는 문제라면 위에서 설명한 것과 같이 TRIE가 적합합니다.<br />
+또한 자동완성과 같은 prefix 검색에도 사용할 수 있습니다.<br />
+위 예제의 경우에서는 <code class="highlighter-rouge">ap</code> 까지만 검색하더라도 <code class="highlighter-rouge">app</code>, <code class="highlighter-rouge">apple</code> 을 자동완성 시킬 수 있습니다.<br />
+이 때 노드에 가중치를 주어서 자동완성에 노출될 단어의 순위를 조절할 수도 있습니다.<br />
+이 외에도 텍스트를 필요로 하는 다양한 분야에서 사용이 가능합니다.</p>
+
+<p>##단점
+이러한 TRIE에도 단점이 몇 가지 있습니다만, 가장 큰 단점은 exact matching에 취약합니다.<br />
+만약에 사전에 매우 긴 단어가 있고 주어진 단어가 사전에 있는지 확인하기 위해서는 꽤 많은 depth로 들어가게 되고 검색 속도가 저하될 수 있습니다.<br />
+Exact matching의 경우에는 TRIE 보다는 다른 자료구조 및 알고리즘을 사용하는 것이 좋습니다.</p>
+
+<p>지금까지 TRIE에 대해서 간략하게 살펴봤습니다.<br />
+본 글에서 설명한 TRIE는 기본적인 형태의 TRIE이기 때문에 실제 서비스나 제품을 개발하는데 있어서는 조금 더 개선될 방법들을 적용해야하는 경우가 많습니다.<br />
+TRIE 자료구조에서 탐색 속도를 높이기 위해서 제안된 Aho-corasick이라는 알고리즘이나 메모리 효율을 높이기 위해서 제안된 Radix 트라이 등도 있습니다.<br />
+오늘 살펴본 TRIE에 대해서 대략적으로 이해하고 있다면 다양한 trie들을 이해하는데 큰 무리가 없을 것입니다.</p>
+
+    <div id="disqus_thread"></div>
+  </div>
+</article>
+
+<!-- <div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/notice/2019/03/29/shinware-blog-is-launched.html">
+            SHINEWARE BLOG를 다시 시작합니다.
+            <small>29 Mar 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div> -->
+
+    </div>
+  </div>
+
+  <label for="sidebar-checkbox" class="sidebar-toggle"><i class="fa fa-bars"></i></label>
+
+<script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script type="text/javascript">
+  anchors.options.placement = 'left';
+  anchors.add('h2');
+</script>
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-99586710-3', 'auto');
+  ga('require', 'linkid', 'linkid.js');
+  ga('send', 'pageview');
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = "https://blog.shineware.co.kr/article/2019/05/10/trie.html";
+        this.page.identifier = "/article/2019/05/10/trie.html";
+        // this.page.title = "TRIE (트라이) 자료구조 &#8211; SHINEWARE";
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = '//shineware.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<script id="dsq-count-scr" src="//shineware.disqus.com/count.js" async></script>
+
+
+</body>
+</html>
