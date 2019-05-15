@@ -117,36 +117,36 @@
     <p><a href="https://blog.shineware.co.kr/article/2019/05/10/trie.html#disqus_thread">Comments</a></p>
     <p>이번 포스팅에서는 자연어처리에서 자주 사용되는 자료구조 중 하나인 trie에 대해서 알아보겠습니다.</p>
 
-<p>##TRIE(트라이)란?
-TRIE는 문자열을 효율적으로 검색하기 위해 고안된 자료구조입니다.<br />
+<h2 id="trie트라이란">TRIE(트라이)란?</h2>
+<p>TRIE는 문자열을 효율적으로 검색하기 위해 고안된 자료구조입니다.<br />
 TRIE는 검색(reTRIEve)이라는 단어에서 유래되었으며 유래에서 알 수 있듯이 검색엔진 또는 자연어처리 등과 같이 문자열을 빠르게 탐색해야 하는 분야에서 다양하게 사용되고 있습니다.</p>
 
-<p>##TRIE 자료구조
-TRIE는 트리 기반의 자료구조로써 저장할 단어를 각각의 문자로 쪼개어 아래 그림과 같이 트리를 구성하게 됩니다.<br />
+<h2 id="trie-자료구조">TRIE 자료구조</h2>
+<p>TRIE는 트리 기반의 자료구조로써 저장할 단어를 각각의 문자로 쪼개어 아래 그림과 같이 트리를 구성하게 됩니다.<br />
 이 때 단어의 마지막 문자에는 단어의 끝을 나타내는 표시를 해줍니다.<br />
 아래 TRIE는 <code class="highlighter-rouge">apple</code>, <code class="highlighter-rouge">app</code>, <code class="highlighter-rouge">api</code>, <code class="highlighter-rouge">apex</code>, <code class="highlighter-rouge">ice</code>, <code class="highlighter-rouge">ic</code>, <code class="highlighter-rouge">bee</code>, <code class="highlighter-rouge">bird</code>, <code class="highlighter-rouge">plea</code>의 단어로 구성된 TRIE 입니다.</p>
 
-<p><img src="../images/trie-picture-1.jpg?raw=true" alt="Alt text" /></p>
+<p><img src="/images/trie-picture-1.jpg?raw=true" alt="Alt text" /></p>
 
-<p>##TRIE 검색
-문장 <code class="highlighter-rouge">appleapi</code>에 포함된 모든 단어를 찾는 문제로 가정해보겠습니다.  <br />
+<h2 id="trie-검색">TRIE 검색</h2>
+<p>문장 <code class="highlighter-rouge">appleapi</code>에 포함된 모든 단어를 찾는 문제로 가정해보겠습니다.  <br />
 이 때 답은 <code class="highlighter-rouge">apple</code>, <code class="highlighter-rouge">app</code>, <code class="highlighter-rouge">api</code>, <code class="highlighter-rouge">plea</code> 입니다.<br />
 먼저 <code class="highlighter-rouge">appleapi</code>에서 첫번째 문자인 <code class="highlighter-rouge">a</code>를 <code class="highlighter-rouge">root</code>의 자식 노드들에서 검색합니다.</p>
 
-<p><img src="../images/trie-picture-2.jpg?raw=true" alt="Alt text" /></p>
+<p><img src="/images/trie-picture-2.jpg?raw=true" alt="Alt text" /></p>
 
 <p>위와 같이 검색이 되고, 다시 검색된 노드의 자식 노드들 중에서 다음 문자인 <code class="highlighter-rouge">p</code>를 검색합니다.</p>
 
-<p><img src="../images/trie-picture-3.jpg?raw=true" alt="Alt text" /></p>
+<p><img src="/images/trie-picture-3.jpg?raw=true" alt="Alt text" /></p>
 
 <p>이런식으로 주어진 문장을 끝까지 검색하면 아래 그림과 같이 <code class="highlighter-rouge">apple</code>, <code class="highlighter-rouge">app</code>이 검색됩니다.</p>
 
-<p><img src="../images/trie-picture-4.jpg?raw=true" alt="Alt text" /></p>
+<p><img src="/images/trie-picture-4.jpg?raw=true" alt="Alt text" /></p>
 
 <p>주어진 문장 <code class="highlighter-rouge">appleapi</code>에서 첫번째 문자인 <code class="highlighter-rouge">a</code>에 대한 탐색은 마쳤습니다.<br />
 이어서 다음 문자인 <code class="highlighter-rouge">p</code>를 다시 root의 자식 노드들에서 검색합니다.</p>
 
-<p><img src="../images/trie-picture-5.jpg?raw=true" alt="Alt text" /></p>
+<p><img src="/images/trie-picture-5.jpg?raw=true" alt="Alt text" /></p>
 
 <p>검색된 노드의 자식 노드들 중에서 다음 문자인 <code class="highlighter-rouge">p</code>를 검색해봅니다.<br />
 이 때 자식 노드들 중에서 <code class="highlighter-rouge">p</code>가 없기 때문에 입력된 문장의 두번째 문자 <code class="highlighter-rouge">p</code>에 대한 탐색은 종료됩니다.</p>
@@ -154,19 +154,19 @@ TRIE는 트리 기반의 자료구조로써 저장할 단어를 각각의 문자
 <p>다음으로 세번재 문자인 <code class="highlighter-rouge">p</code>에 대해서 검색을 합니다.<br />
 위와 같은 방법으로 검색을 하게되면 아래 그림과 같이 <code class="highlighter-rouge">plea</code>가 검색됩니다.</p>
 
-<p><img src="../images/trie-picture-6.jpg?raw=true" alt="Alt text" /></p>
+<p><img src="/images/trie-picture-6.jpg?raw=true" alt="Alt text" /></p>
 
 <p>네번째 문자 <code class="highlighter-rouge">l</code>과 다섯번째 문자 <code class="highlighter-rouge">e</code>는 root의 자식 노드에 없기 때문에 바로 종료됩니다.</p>
 
 <p>여섯번째 문자인 <code class="highlighter-rouge">a</code>에 대해서 다시 검색을 하게 되면 아래 그림과 같이 <code class="highlighter-rouge">api</code>가 검색됩니다.</p>
 
-<p><img src="../images/trie-picture-7.jpg?raw=true" alt="Alt text" /></p>
+<p><img src="/images/trie-picture-7.jpg?raw=true" alt="Alt text" /></p>
 
 <p>남은 문자인 <code class="highlighter-rouge">p</code>, <code class="highlighter-rouge">i</code>에 대해서는 검색되는 단어가 없습니다.</p>
 
 <p>최종적으로 <code class="highlighter-rouge">appleapi</code>에서 검색된 문자는 <code class="highlighter-rouge">apple</code>, <code class="highlighter-rouge">app</code>, <code class="highlighter-rouge">plea</code>, <code class="highlighter-rouge">api</code>가 됩니다.</p>
 
-<p>##TRIE를 왜 쓰나요?
+<p>## TRIE를 왜 쓰나요?
  가장 빠른 알고리즘은 hash를 이용한 방법일 겁니다.<br />
  주어진 문장을 잘게 쪼갠 후 hash 값을 통해서 사전에 포함된 단어를 찾아야 합니다.<br />
  그러나 이 때 <code class="highlighter-rouge">주어진 문장을 잘게 쪼갠 후</code>의 과정이 있기 때문에 빠르게 단어를 찾을 수 없습니다.<br />
@@ -174,7 +174,7 @@ TRIE는 트리 기반의 자료구조로써 저장할 단어를 각각의 문자
  그러나 사전의 사이즈가 매우 커지면 빠르게 단어를 찾을 수 없습니다.<br />
  그렇기 때문에 TRIE를 통해서 이러한 문제를 해소할 수 있습니다.</p>
 
-<p>##TRIE는 어디에 쓰이나요?
+<p>## TRIE는 어디에 쓰이나요?
 가장 대표적으로 shineware에서 오픈소스로 공개한 KOMORAN에도 TRIE 기반의 자료구조가 사용되고 있습니다.<br />
 영어는 띄어쓰기 단위로 단어를 인지할 수 있지만 한국어의 경우에는 하나의 어절에 여러 형태소가 포함될 수 있습니다.<br />
 이러한 여러 형태소를 찾아야하는 문제라면 위에서 설명한 것과 같이 TRIE가 적합합니다.<br />
@@ -183,8 +183,8 @@ TRIE는 트리 기반의 자료구조로써 저장할 단어를 각각의 문자
 이 때 노드에 가중치를 주어서 자동완성에 노출될 단어의 순위를 조절할 수도 있습니다.<br />
 이 외에도 텍스트를 필요로 하는 다양한 분야에서 사용이 가능합니다.</p>
 
-<p>##단점
-이러한 TRIE에도 단점이 몇 가지 있습니다만, 가장 큰 단점은 exact matching에 취약합니다.<br />
+<h2 id="단점">단점</h2>
+<p>이러한 TRIE에도 단점이 몇 가지 있습니다만, 가장 큰 단점은 exact matching에 취약합니다.<br />
 만약에 사전에 매우 긴 단어가 있고 주어진 단어가 사전에 있는지 확인하기 위해서는 꽤 많은 depth로 들어가게 되고 검색 속도가 저하될 수 있습니다.<br />
 Exact matching의 경우에는 TRIE 보다는 다른 자료구조 및 알고리즘을 사용하는 것이 좋습니다.</p>
 
