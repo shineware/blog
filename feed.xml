@@ -59,16 +59,16 @@ TRIE는 검색(reTRIEve)이라는 단어에서 유래되었으며 유래에서 �
 
 &lt;p&gt;최종적으로 &lt;code class=&quot;highlighter-rouge&quot;&gt;appleapi&lt;/code&gt;에서 검색된 문자는 &lt;code class=&quot;highlighter-rouge&quot;&gt;apple&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;app&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;plea&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;api&lt;/code&gt;가 됩니다.&lt;/p&gt;
 
-&lt;p&gt;## TRIE를 왜 쓰나요?
- 가장 빠른 알고리즘은 hash를 이용한 방법일 겁니다.&lt;br /&gt;
+&lt;h2 id=&quot;trie를-왜-쓰나요&quot;&gt;TRIE를 왜 쓰나요?&lt;/h2&gt;
+&lt;p&gt;가장 빠른 알고리즘은 hash를 이용한 방법일 겁니다.&lt;br /&gt;
  주어진 문장을 잘게 쪼갠 후 hash 값을 통해서 사전에 포함된 단어를 찾아야 합니다.&lt;br /&gt;
  그러나 이 때 &lt;code class=&quot;highlighter-rouge&quot;&gt;주어진 문장을 잘게 쪼갠 후&lt;/code&gt;의 과정이 있기 때문에 빠르게 단어를 찾을 수 없습니다.&lt;br /&gt;
  또한 위 예제의 경우에는 사전에 포함된 단어의 개수가 얼마되지 않기 때문에 다른 알고리즘을 통해서 더 빠르게 포함된 단어를 찾을 수도 있습니다.&lt;br /&gt;
  그러나 사전의 사이즈가 매우 커지면 빠르게 단어를 찾을 수 없습니다.&lt;br /&gt;
  그렇기 때문에 TRIE를 통해서 이러한 문제를 해소할 수 있습니다.&lt;/p&gt;
 
-&lt;p&gt;## TRIE는 어디에 쓰이나요?
-가장 대표적으로 shineware에서 오픈소스로 공개한 KOMORAN에도 TRIE 기반의 자료구조가 사용되고 있습니다.&lt;br /&gt;
+&lt;h2 id=&quot;trie는-어디에-쓰이나요&quot;&gt;TRIE는 어디에 쓰이나요?&lt;/h2&gt;
+&lt;p&gt;가장 대표적으로 shineware에서 오픈소스로 공개한 KOMORAN에도 TRIE 기반의 자료구조가 사용되고 있습니다.&lt;br /&gt;
 영어는 띄어쓰기 단위로 단어를 인지할 수 있지만 한국어의 경우에는 하나의 어절에 여러 형태소가 포함될 수 있습니다.&lt;br /&gt;
 이러한 여러 형태소를 찾아야하는 문제라면 위에서 설명한 것과 같이 TRIE가 적합합니다.&lt;br /&gt;
 또한 자동완성과 같은 prefix 검색에도 사용할 수 있습니다.&lt;br /&gt;
