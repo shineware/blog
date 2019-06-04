@@ -240,7 +240,7 @@ plt.imshow(wordcloud.to_array(), interpolation="bilinear")
 plt.show()
 ```
 
-![positive_cloud](/Users/dennis/Downloads/positive_cloud.png)
+![positive_cloud](/images/positive_cloud.png?raw=true)
 
 영화 리뷰다보니 영화가 많이 등장하였고 그 외에 최고, 감동, 재밌 등이 보입니다.
 부정 리뷰에 대해서도 시각화를 해보겠습니다.
@@ -255,6 +255,6 @@ plt.imshow(wordcloud.to_array(), interpolation="bilinear")
 plt.show()
 ```
 
-![negative_cloud](/Users/dennis/Downloads/negative_cloud.png)
+![negative_cloud](/images/negative_cloud.png?raw=true)
 
 마찬가지로 영화 키워드가 많이 보이며, 그 외 최악, 재미없 등이 보입니다.
