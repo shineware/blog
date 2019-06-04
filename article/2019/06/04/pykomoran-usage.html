@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>PyKomoran을 활용한 자연어처리 뽀개기! &#8211; SHINEWARE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <meta name="author" content="Junghwan Park">
+  <meta name="description" content="">
+  <meta name="keywords" content="shineware, PyKomoran">
+  <meta name="viewport" content="width=device-width">
+  <link rel="canonical" href="https://blog.shineware.co.kr/article/2019/06/04/pykomoran-usage.html" />
+  <link rel="shortcut icon" href="favicon.ico" />
+
+  <meta property="og:title" content="PyKomoran을 활용한 자연어처리 뽀개기! &#8211; SHINEWARE">
+  <meta property="og:type" content="article">
+  <meta property="og:description" content="">
+  <meta property="og:url" content="https://blog.shineware.co.kr/article/2019/06/04/pykomoran-usage.html">
+  <meta property="og:site_name" content="SHINEWARE">
+  
+
+  <link href="https://blog.shineware.co.kr/feed.xml" type="application/atom+xml" rel="alternate" title="SHINEWARE">
+
+  <link rel="stylesheet" href="/css/main.min.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <link rel="shortcut icon" href="/images/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/images/favicon/site.webmanifest">
+  <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#e50000">
+  <meta name="msapplication-TileColor" content="#ff0000">
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+  <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about.html">About</a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/tags.html">Tags</a>
+        
+      
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>SHINEWARE는 NLP 연구 동호회로, 자연어 처리와 관련된 다양한 연구들을 진행하고 있습니다.</p>
+    <p class="social-icons">
+      <a href="https://www.shineware.co.kr"><i class="fas fa-home fa-2x"></i></a>
+      <a href="https://github.com/shineware"><i class="fab fa-github fa-2x"></i></a>
+      <a href="https://komoran.slack.com"><i class="fab fa-slack fa-2x"></i></a>
+      <a href="/feed.xml"><i class="fa fa-rss fa-2x"></i></a>
+    </p>
+    <p>
+      &copy; 2019. All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+  <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+       content to avoid any CSS collisions with our real content. -->
+  <div class="wrap">
+    <div class="masthead">
+      <div class="container">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">SHINEWARE</a>
+          <small>SHINEWARE는 NLP 연구 동호회로, 자연어 처리와 관련된 다양한 연구들을 진행하고 있습니다.</small>
+        </h3>
+      </div>
+    </div>
+
+    <div class="container content">
+      <article itemscope itemtype="http://schema.org/Article">
+  <div class="post">
+    <h1 itemprop="name" class="post-title">PyKomoran을 활용한 자연어처리 뽀개기!</h1>
+    <p class="entry-tags"><a href="https://blog.shineware.co.kr/tags.html#shineware" title="Pages tagged shineware" rel="tag">shineware</a> &bull; <a href="https://blog.shineware.co.kr/tags.html#PyKomoran" title="Pages tagged PyKomoran" rel="tag">PyKomoran</a></p>
+    <p class="post-date" itemprop="datePublished" content="2019-06-04">04 Jun 2019</p>
+    <p><a href="https://blog.shineware.co.kr/article/2019/06/04/pykomoran-usage.html#disqus_thread">Comments</a></p>
+    <h2 id="pykomoran을-활용한-자연어처리-뽀개기">PyKomoran을 활용한 자연어처리 뽀개기!</h2>
+
+<p>안녕하세요. SHINEWARE의 이근호입니다. 이번 포스트에서는 PyKomoran을 활용해서 여러가지 간단한 자연어처리를 해보려고 합니다. 자연어처리의 범주는 무궁무진한데요. 간단하게는 문서들에서의 단어 빈도수를 구하고 WordCloud 등으로 시각화를 하거나, 긍정 및 부정 문장 분류 등이 있습니다. 이번 포스트에서는 몇 가지 자연어처리를 위해서 형태소 분석 후 관련 예제들을 진행해보겠습니다.</p>
+
+<h2 id="data-preparing">Data Preparing</h2>
+
+<p>형태소 분석을 하기 위한 공개 데이터로 Naver 영화 리뷰 데이터를 읽어옵니다. Pandas는 Web에 있는 문서 읽기도 지원합니다!</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="n">data_url</span> <span class="o">=</span> <span class="s">'https://raw.githubusercontent.com/e9t/nsmc/master/ratings.txt'</span>
+<span class="n">raw_review_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">'</span><span class="se">\t</span><span class="s">'</span><span class="p">)</span>
+<span class="n">raw_review_data</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>id, document, label 3개의 column으로 이루어져 있는 데이터를 확인할 수 있습니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>document</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>12754</td>
+      <td>사랑의 집착 그 끝은 어디?</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>3108749</td>
+      <td>어설픈 선정성과 폭력성..</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>2094352</td>
+      <td>배경음악, 색감, 연기, 구성, 편집 모두 최악. .</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>5924993</td>
+      <td>이럴 때 영화가 싫어진다.</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>document column을 보시고 눈치채셨겠지만, label 1은 <strong>긍정 리뷰</strong>, 0은 <strong>부정 리뷰</strong>를 의미합니다. 
+우리는 document, 즉 Text 데이터를 사용해서 예제를 진행할 것이기 때문에 해당 데이터에 대해서 추가적인 검증을 진행합니다</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cleansed_review_data</span> <span class="o">=</span> <span class="n">raw_review_data</span><span class="p">[</span><span class="o">~</span><span class="n">raw_review_data</span><span class="p">[</span><span class="s">'document'</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span>
+<span class="n">cleansed_review_data</span> <span class="o">=</span> <span class="n">cleansed_review_data</span><span class="p">[[</span><span class="s">'document'</span><span class="p">,</span> <span class="s">'label'</span><span class="p">]]</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'검증 전 레코드 수: {}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">raw_review_data</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'검증 후 레코드 수: {}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cleansed_review_data</span><span class="p">)))</span>
+<span class="n">cleansed_review_data</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">검증</span> <span class="err">전</span> <span class="err">레코드</span> <span class="err">수</span><span class="p">:</span> <span class="mi">200000</span>
+<span class="err">검증</span> <span class="err">후</span> <span class="err">레코드</span> <span class="err">수</span><span class="p">:</span> <span class="mi">199992</span>
+</code></pre></div></div>
+
+<p>document 값이 제대로 채워지지 않은 레코드가 8개나 있었군요. 해당 레코드를 버리고, 우리는 필요한 column <strong>document</strong>와 <strong>label</strong> 만 가져와서 사용하겠습니다. 여기까지가 데이터 준비단계였습니다.</p>
+
+<h2 id="data-preprocessing">Data Preprocessing</h2>
+
+<p>형태소 빈도 분석, 문장 분류 등 여러 가지 자연어처리 작업을 위해서는 사전에 Data Preprocessing이 필요합니다. 이번 포스트에서는 PyKomoran을 활용해서 데이터 전처리를 해보겠습니다. PyKomoran은 pip를 통해서 쉽게 설치가 가능합니다!</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install PyKomoran
+</code></pre></div></div>
+
+<p>설치 후 PyKomoran을 불러오겠습니다</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">PyKomoran</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">komoran</span> <span class="o">=</span> <span class="n">Komoran</span><span class="p">(</span><span class="s">'STABLE'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Komoran 사용해서 앞에서 준비한 데이터에 대해서 형태소 분석을 해보겠습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cleansed_review_data</span><span class="p">[</span><span class="s">'tokens'</span><span class="p">]</span> <span class="o">=</span> <span class="n">cleansed_review_data</span><span class="p">[</span><span class="s">'document'</span><span class="p">]</span><span class="o">.</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">komoran</span><span class="o">.</span><span class="n">get_plain_text</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">s'</span><span class="p">))</span>
+<span class="n">cleansed_review_data</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>document</th>
+      <th>label</th>
+      <th>tokens</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>7~8점정도는 되는데 현실왜곡해서 1점줌. 마지막에 말이되냐. 주인공 버프 개사기….</td>
+      <td>0</td>
+      <td>[7/SN ~/SO 8/SN 점/NNB 정도/NNG 는/JX 되/VV 는데/EC 현…</td>
+    </tr>
+    <tr>
+      <td>지루함+어수선함=싸이코패스 영화</td>
+      <td>0</td>
+      <td>[지루/XR 하/XSA ㅁ/ETN +/SW 어수선/XR 하/XSA ㅁ/ETN =/S…</td>
+    </tr>
+    <tr>
+      <td>속 깊은 진짜 사나이. 그랜토리노!</td>
+      <td>1</td>
+      <td>[속/NNG 깊/VA 은/ETM 진짜/MAG 사나이/NNG ./SF 그러/VV 어/…</td>
+    </tr>
+    <tr>
+      <td>원작을 보지 못해서 내용의 충실도에 대해선 뭐라 할 순 없지만 영화가 흘러가는 완급…</td>
+      <td>1</td>
+      <td>[원작/NNG 을/JKO 보/VV 지/EC 못하/VX 아서/EC 내용/NNG 의/J…</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>tokens column을 통해 문장이 형태소로 분해된 것을 확인할 수 있습니다. 형태소 각각에 대한 품사표는 https://pydocs.komoran.kr/firststep/postypes.html 를 참고하세요! 위 예제를 봤을 때 특수 문자나, 몇가지 형태소는 우리의 관심사에서 조금 동떨어진 것 같습니다. PyKomoran에서는 사용자가 관심 있는 형태소에 대해서만 추출이 가능합니다. 저는 명사, 동사 및 형용사 형태소만 따로 뽑아보겠습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 순서대로 일반 명사, 동사, 형용사</span>
+<span class="n">target_tags</span> <span class="o">=</span> <span class="p">[</span><span class="s">'NNG'</span><span class="p">,</span><span class="s">'VV'</span><span class="p">,</span> <span class="s">'VA'</span><span class="p">]</span>
+<span class="n">cleansed_review_data</span><span class="p">[</span><span class="s">'specific_tokens'</span><span class="p">]</span> <span class="o">=</span> <span class="n">cleansed_review_data</span><span class="p">[</span><span class="s">'document'</span><span class="p">]</span><span class="o">.</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">komoran</span><span class="o">.</span><span class="n">get_morphes_by_tags</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">tag_list</span><span class="o">=</span><span class="n">target_tags</span><span class="p">))</span>
+<span class="n">cleansed_review_data</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">4</span><span class="p">)[[</span><span class="s">'document'</span><span class="p">,</span> <span class="s">'label'</span><span class="p">,</span> <span class="s">'specific_tokens'</span><span class="p">]]</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>document</th>
+      <th>label</th>
+      <th>specific_tokens</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>이 영화는진짜별점으로 매길수없는영화입니다</td>
+      <td>1</td>
+      <td>[영화, 진짜, 별점, 매기, 없, 영화]</td>
+    </tr>
+    <tr>
+      <td>일본판 쏘우를 기대했는데 실망</td>
+      <td>0</td>
+      <td>[쏘, 기대, 실망]</td>
+    </tr>
+    <tr>
+      <td>좀 아쉬운</td>
+      <td>0</td>
+      <td>[아쉽]</td>
+    </tr>
+    <tr>
+      <td>정말 유치함재난영화에 대한 예의로 다봤을뿐중간에 헛웃음 계속 나오는 영화애들은 계속…</td>
+      <td>0</td>
+      <td>[재난, 영화, 대하, 예의, 보, 중간, 웃음, 나오, 영화, 애, 발암, 유발]</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>specific_tokens</strong> column을 통해 처음에 지정한 일반 명사, 동사, 형용사 형태소만 뽑은 것을 확인할 수 있습니다. 이제 여기까지 전처리가 끝난 데이터를 가지고 여러 가지 작업을 해보겠습니다.</p>
+
+<h2 id="형태소-빈도-분석">형태소 빈도 분석</h2>
+
+<p>전처리가 끝난 데이터를 통해서 긍정 리뷰와 부정 리뷰에서 자주 등장하는 형태소 빈도 분석을 해보겠습니다. 이번 포스트에서는 일반 명사, 동사, 형용사 형태소에 대해서 빈도 분석을 해보겠습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">itertools</span>
+
+<span class="n">positive_review_data</span> <span class="o">=</span> <span class="n">cleansed_review_data</span><span class="p">[</span><span class="n">cleansed_review_data</span><span class="p">[</span><span class="s">'label'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">negative_review_data</span> <span class="o">=</span> <span class="n">cleansed_review_data</span><span class="p">[</span><span class="n">cleansed_review_data</span><span class="p">[</span><span class="s">'label'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="n">positive_specific_tokens</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="n">positive_review_data</span><span class="p">[</span><span class="s">'specific_tokens'</span><span class="p">]))</span>
+<span class="n">negative_specific_tokens</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="n">negative_review_data</span><span class="p">[</span><span class="s">'specific_tokens'</span><span class="p">]))</span>
+</code></pre></div></div>
+
+<p>Python에서 제공하는 Counter를 사용하여 쉽게 빈도수를 계산할 수 있습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"긍정 리뷰 형태소 (일반 명사 / 동사 / 형용사)"</span><span class="p">)</span>
+<span class="n">Counter</span><span class="p">(</span><span class="n">positive_specific_tokens</span><span class="p">)</span><span class="o">.</span><span class="n">most_common</span><span class="p">()[:</span><span class="mi">30</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>긍정 리뷰 형태소 (일반 명사 / 동사 / 형용사)
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[('영화', 38823),
+ ('보', 31835),
+ ('좋', 11156),
+ ('재밌', 9271),
+ ('하', 9085),
+ ('있', 8744),
+ ('최고', 7760),
+ ('없', 6239),
+ ('같', 5341),
+ ('연기', 5105),
+ ('감동', 4889),
+ ('되', 4852),
+ ('때', 4471),
+ ('생각', 4456),
+ ('재미있', 4416),
+ ('드라마', 3871),
+ ('만들', 3648),
+ ('사랑', 3643),
+ ('평점', 3517),
+ ('나오', 3506),
+ ('사람', 3288),
+ ('말', 3210),
+ ('배우', 3067),
+ ('나', 2820),
+ ('재', 2748),
+ ('스토리', 2538),
+ ('알', 2537),
+ ('작품', 2446),
+ ('마지막', 2407),
+ ('명작', 2294)]
+</code></pre></div></div>
+
+<p>긍정 리뷰에서는 자주 나왔던 형태소(일반 명사, 동사, 형용사)를 순서대로 세워보았습니다. 긍정의 표현인 재밌, 최고, 감동, 명작 등의 형태소가 눈에 띄네요.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"부정 리뷰 형태소 (일반 명사 / 동사 / 형용사)"</span><span class="p">)</span>
+<span class="n">Counter</span><span class="p">(</span><span class="n">negative_specific_tokens</span><span class="p">)</span><span class="o">.</span><span class="n">most_common</span><span class="p">()[:</span><span class="mi">30</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>부정 리뷰 형태소 (일반 명사 / 동사 / 형용사)
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[('영화', 36977),
+ ('보', 23975),
+ ('없', 14467),
+ ('하', 11811),
+ ('만들', 6390),
+ ('같', 5474),
+ ('나오', 5384),
+ ('아깝', 5146),
+ ('있', 5057),
+ ('평점', 4810),
+ ('스토리', 4569),
+ ('연기', 4363),
+ ('재미없', 4312),
+ ('좋', 4266),
+ ('쓰레기', 4254),
+ ('내용', 3885),
+ ('감독', 3695),
+ ('시간', 3690),
+ ('말', 3604),
+ ('되', 3466),
+ ('안', 3458),
+ ('사람', 3325),
+ ('배우', 3322),
+ ('재미', 3150),
+ ('나', 3064),
+ ('알', 3040),
+ ('최악', 2910),
+ ('이렇', 2807),
+ ('드라마', 2751),
+ ('생각', 2598)]
+</code></pre></div></div>
+
+<p>부정 리뷰에서는 아깝, 재미없, 쓰레기, 최악 등의 형태소가 눈에 띕니다. 빈도 분석을 텍스트로만 하니까 조금 심심하네요. 워드클라우드를 활용해서 시각화를 해보겠습니다.</p>
+
+<h2 id="형태소-빈도-시각화">형태소 빈도 시각화</h2>
+
+<p>이번 포스트에서는 Python의 wordcloud 패키지로 시각화를 해보겠습니다. 혹시 설치가 되어있지 않다면 pip로 쉽게 설치할 수 있습니다.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install wordcloud
+</code></pre></div></div>
+
+<p>WordCloud 객체애 대해서 다음과 같이 설정을 합니다. 한글이 들어가기 때문에 폰트 path에 대해서 지정을 해줘야 깨지지 않고 볼 수 있습니다. 아래 세팅은 https://lovit.github.io/nlp/2018/04/17/word_cloud/ 에서 많이 참고하였습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">wordcloud</span> <span class="kn">import</span> <span class="n">WordCloud</span>
+
+<span class="n">wordcloud</span> <span class="o">=</span> <span class="n">WordCloud</span><span class="p">(</span>
+    <span class="n">font_path</span><span class="o">=</span><span class="s">'/usr/share/fonts/truetype/nanum/NanumBarunGothic.ttf'</span><span class="p">,</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span>
+    <span class="n">background_color</span><span class="o">=</span><span class="s">'white'</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>긍정 리뷰에 대해서 먼저 시각화해보겠습니다</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="n">wordcloud</span> <span class="o">=</span> <span class="n">wordcloud</span><span class="o">.</span><span class="n">generate_from_frequencies</span><span class="p">(</span><span class="n">Counter</span><span class="p">(</span><span class="n">positive_specific_tokens</span><span class="p">))</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">wordcloud</span><span class="o">.</span><span class="n">to_array</span><span class="p">(),</span> <span class="n">interpolation</span><span class="o">=</span><span class="s">"bilinear"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="/Users/dennis/Downloads/positive_cloud.png" alt="positive_cloud" /></p>
+
+<p>영화 리뷰다보니 영화가 많이 등장하였고 그 외에 최고, 감동, 재밌 등이 보입니다.
+부정 리뷰에 대해서도 시각화를 해보겠습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="n">wordcloud</span> <span class="o">=</span> <span class="n">wordcloud</span><span class="o">.</span><span class="n">generate_from_frequencies</span><span class="p">(</span><span class="n">Counter</span><span class="p">(</span><span class="n">negative_specific_tokens</span><span class="p">))</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">wordcloud</span><span class="o">.</span><span class="n">to_array</span><span class="p">(),</span> <span class="n">interpolation</span><span class="o">=</span><span class="s">"bilinear"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="/Users/dennis/Downloads/negative_cloud.png" alt="negative_cloud" /></p>
+
+<p>마찬가지로 영화 키워드가 많이 보이며, 그 외 최악, 재미없 등이 보입니다.</p>
+
+    <div id="disqus_thread"></div>
+  </div>
+</article>
+
+<!-- <div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/article/2019/05/10/trie.html">
+            TRIE (트라이) 자료구조
+            <small>10 May 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/notice/2019/03/29/shinware-blog-is-launched.html">
+            SHINEWARE BLOG를 다시 시작합니다.
+            <small>29 Mar 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div> -->
+
+    </div>
+  </div>
+
+  <label for="sidebar-checkbox" class="sidebar-toggle"><i class="fa fa-bars"></i></label>
+
+<script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script type="text/javascript">
+  anchors.options.placement = 'left';
+  anchors.add('h2');
+</script>
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-99586710-3', 'auto');
+  ga('require', 'linkid', 'linkid.js');
+  ga('send', 'pageview');
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = "https://blog.shineware.co.kr/article/2019/06/04/pykomoran-usage.html";
+        this.page.identifier = "/article/2019/06/04/pykomoran-usage.html";
+        // this.page.title = "PyKomoran을 활용한 자연어처리 뽀개기! &#8211; SHINEWARE";
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = '//shineware.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<script id="dsq-count-scr" src="//shineware.disqus.com/count.js" async></script>
+
+
+</body>
+</html>
