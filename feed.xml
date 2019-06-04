@@ -298,7 +298,7 @@
 &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;/Users/dennis/Downloads/positive_cloud.png&quot; alt=&quot;positive_cloud&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/positive_cloud.png?raw=true&quot; alt=&quot;positive_cloud&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;영화 리뷰다보니 영화가 많이 등장하였고 그 외에 최고, 감동, 재밌 등이 보입니다.
 부정 리뷰에 대해서도 시각화를 해보겠습니다.&lt;/p&gt;
@@ -312,7 +312,7 @@
 &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;/Users/dennis/Downloads/negative_cloud.png&quot; alt=&quot;negative_cloud&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/negative_cloud.png?raw=true&quot; alt=&quot;negative_cloud&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;마찬가지로 영화 키워드가 많이 보이며, 그 외 최악, 재미없 등이 보입니다.&lt;/p&gt;
 </description>
